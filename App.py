@@ -23,7 +23,9 @@ st.caption("A tool to create detailed personas for non-human species using Googl
 
 # --- 4. API Key Input ---
 # Create a password-style text input for the user to securely enter their API key.
-api_key = st.text_input("Enter your Google AI API Key:", type="password", help="You can get your key from Google AI Studio.")
+api_key = st.secrets["GOOGLE_API_KEY"]
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # --- 5. Main Application Logic ---
 # The rest of the app will only run if an API key has been entered.
